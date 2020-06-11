@@ -1,7 +1,7 @@
 app:
   env: prod
   redis:
-    server: 172.31.0.148:6379
+    server: 172.31.19.15:6379
     database: 0
     password: admin
     timeout: 2000
