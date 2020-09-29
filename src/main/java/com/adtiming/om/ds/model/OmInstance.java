@@ -53,6 +53,18 @@ public class OmInstance {
     private Date createTime;
 
     private Date lastmodify;
+    
+    // ADDCODE aaron.song
+    private Integer c;
+    
+    public Integer getC() {
+        return c;
+    }
+
+    public void setC(Integer c) {
+        this.c = c;
+    }
+    //
 
     public Integer getId() {
         return id;
@@ -281,7 +293,10 @@ public class OmInstance {
                 && (this.getAudienceSegmentExpected() == null ? other.getAudienceSegmentExpected() == null : this.getAudienceSegmentExpected().equals(other.getAudienceSegmentExpected()))
                 && (this.getHbStatus() == null ? other.getHbStatus() == null : this.getHbStatus().equals(other.getHbStatus()))
                 && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-                && (this.getLastmodify() == null ? other.getLastmodify() == null : this.getLastmodify().equals(other.getLastmodify()));
+                && (this.getLastmodify() == null ? other.getLastmodify() == null : this.getLastmodify().equals(other.getLastmodify()))
+                // ADDCODE aaron.song
+                && (this.getC() == null ? other.getC() == null : this.getC().equals(other.getC()));
+        		//
     }
 
     @Override
@@ -312,6 +327,9 @@ public class OmInstance {
         result = prime * result + ((getHbStatus() == null) ? 0 : getHbStatus().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
         result = prime * result + ((getLastmodify() == null) ? 0 : getLastmodify().hashCode());
+        // ADDCODE aaron.song
+        result = prime * result + ((getC() == null) ? 0 : getC().hashCode());
+        //
         return result;
     }
 }

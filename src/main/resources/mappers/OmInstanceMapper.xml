@@ -26,6 +26,7 @@
     <result column="hb_status" jdbcType="TINYINT" property="hbStatus" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="lastmodify" jdbcType="TIMESTAMP" property="lastmodify" />
+    <result column="c" jdbcType="INTEGER" property="c" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.adtiming.om.ds.model.OmInstanceWithBLOBs">
     <result column="make_whitelist" jdbcType="LONGVARCHAR" property="makeWhitelist" />
@@ -218,6 +219,9 @@
       <if test="lastmodify != null">
         lastmodify,
       </if>
+      <if test="c != null">
+        c,
+      </if>
       <if test="makeWhitelist != null">
         make_whitelist,
       </if>
@@ -399,6 +403,9 @@
       <if test="lastmodify != null">
         lastmodify = #{lastmodify,jdbcType=TIMESTAMP},
       </if>
+      <if test="c != null">
+        c = #{c,jdbcType=INTEGER},
+      </if>
       <if test="makeWhitelist != null">
         make_whitelist = #{makeWhitelist,jdbcType=LONGVARCHAR},
       </if>
@@ -445,6 +452,7 @@
       hb_status = #{hbStatus,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       lastmodify = #{lastmodify,jdbcType=TIMESTAMP},
+      c = #{c,jdbcType=INTEGER},
       make_whitelist = #{makeWhitelist,jdbcType=LONGVARCHAR},
       make_blacklist = #{makeBlacklist,jdbcType=LONGVARCHAR},
       brand_whitelist = #{brandWhitelist,jdbcType=LONGVARCHAR},
