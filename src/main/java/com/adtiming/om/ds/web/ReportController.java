@@ -39,7 +39,7 @@ public class ReportController extends BaseController {
      * Get DAU report
      */
     @RequestMapping(value = "/report/list", method = RequestMethod.POST)
-    public Response getReport(@RequestBody ReportConditionDTO reportConditionDTO) {
+    public Response getReport(@RequestBody ReportConditionDTO reportConditionDTO) { // ADDCOMMENT aaron.song report过滤条件
         if (reportConditionDTO.getDateBegin() == null || reportConditionDTO.getDateEnd() == null) {
             log.error("Date must not null");
             return Response.RES_PARAMETER_ERROR;
@@ -49,7 +49,7 @@ public class ReportController extends BaseController {
             return Response.RES_PARAMETER_ERROR;
         }
         Set<String> reportTypeSet = new HashSet<>();
-        for (String type : reportConditionDTO.getType()) {
+        for (String type : reportConditionDTO.getType()) { // ADDCOMMENT aaron.song 解析报表类型属性
             reportTypeSet.add(type);
         }
         return this.reportService.getReport(reportConditionDTO, reportTypeSet);

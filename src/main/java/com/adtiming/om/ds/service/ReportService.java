@@ -51,7 +51,7 @@ public class ReportService extends BaseService {
      * Get dau lr revenue reports
      *
      * @param reportConditionDTO
-     * @param reportTypeSet
+     * @param reportTypeSet ADDCOMMENT aaron.song 报表类型集
      */
     public Response getReport(ReportConditionDTO reportConditionDTO, Set<String> reportTypeSet) {
         try {
@@ -293,7 +293,7 @@ public class ReportService extends BaseService {
 
     /**
      * Set publisher and publisher app which current user could view
-     *
+     * ADDCOMMENT aaron.song 设置当前用户可以查看的发布者和发布者应用程序
      * @param reportConditionDTO
      */
     private void handleDataPermissions(ReportConditionDTO reportConditionDTO) {
