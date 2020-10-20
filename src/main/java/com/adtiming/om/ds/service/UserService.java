@@ -16,6 +16,8 @@ import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -44,7 +46,7 @@ import java.util.stream.Collectors;
 public class UserService extends BaseService {
 
     public static final String DEFAULT_PASSWORD = "666666";
-
+    protected static final Logger log = LogManager.getLogger();
     @Resource
     private RedisSessionDAO redisSessionDAO;
 
@@ -88,11 +90,8 @@ public class UserService extends BaseService {
         } else {
             List<UmUser> users = new ArrayList<>();
             if (currentUser.getRoleId() == RoleType.ORGANIZATION_OWNER.getId()) {
-                List<Integer> currentUserPublisherIds = this.getPublisherIdsOfCurrentUser();
-                for (Integer currentPublisherId : currentUserPublisherIds) {
-                    List<UmUser> publisherUsers = this.umUserMapper.selectByPublisherId(currentPublisherId);
-                    users.addAll(publisherUsers);
-                }
+                List<UmUser> publisherUsers = this.umUserMapper.selectByPublisherId(this.getCurrentPublisherId());
+                users.addAll(publisherUsers);
                 users.add(currentUser);
             } else {
                 users = this.umUserMapper.getUsersByName(email);
@@ -182,16 +181,18 @@ public class UserService extends BaseService {
             umUser.setCreateTime(currentTime);
             umUser.setLastmodify(currentTime);
             int result = this.umUserMapper.insertSelective(umUser);
-            if (result > 0) {
-                Response response = this.roleService.createUserRole(umUser.getId(), userDTO.getRoleId(), userDTO.getPublisherId());
-                if (response.getCode() != Response.SUCCESS_CODE) {
-                    throw new RuntimeException("Create user role relation error " + JSONObject.toJSONString(userDTO));
-                }
-                log.info("Create user {} success", umUser.getName());
-                return Response.buildSuccess(umUser);
-            } else {
+            if (result <= 0) {
                 throw new RuntimeException("Create user " + JSONObject.toJSONString(userDTO) + " failed");
             }
+            if (userDTO.getPublisherId() == null) {
+                userDTO.setPublisherId(this.getCurrentUser().getPublisherId());
+            }
+            Response response = this.roleService.createUserRole(umUser.getId(), userDTO.getRoleId(), userDTO.getPublisherId());
+            if (response.getCode() != Response.SUCCESS_CODE) {
+                throw new RuntimeException("Create user role relation error " + JSONObject.toJSONString(userDTO));
+            }
+            log.info("Create user {} success", umUser.getName());
+            return Response.buildSuccess(umUser);
         } catch (Exception e) {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             log.info("Create user {} error", JSONObject.toJSONString(userDTO), e);
@@ -210,12 +211,10 @@ public class UserService extends BaseService {
             return this.updatePassword(umUser);
         }
         if (currentUser.getRoleId() == RoleType.ORGANIZATION_OWNER.getId()) {
-            List<Integer> publisherIdsOfCurrentUser = this.getPublisherIdsOfCurrentUser();
             List<UmUserRole> umUserRoles = this.getUserRoles(umUser.getId());
-            Set<Integer> publisherIdSetOfCurrentUser = new HashSet<>(publisherIdsOfCurrentUser);
             boolean isManagedByCurrentUser = false;
             for (UmUserRole umUserRole : umUserRoles) {
-                if (publisherIdSetOfCurrentUser.contains(umUserRole.getPubId())) {
+                if (this.getCurrentPublisherId().equals(umUserRole.getPubId())) {
                     isManagedByCurrentUser = true;
                     break;
                 }
@@ -246,6 +245,7 @@ public class UserService extends BaseService {
             }
             int result = this.umUserMapper.updateByPrimaryKeySelective(umUser);
             if (result > 0) {
+                this.deleteSession(umUser);
                 log.info("Update user {} password success", umUser.getName());
                 return Response.build();
             }
@@ -292,7 +292,7 @@ public class UserService extends BaseService {
                         this.roleService.deleteUserRolePublisher(dbUser.getId(), dbUser.getOldPublisherId());
                     }
                     Response response = this.roleService.createUserRole(umUser.getId(), umUser.getRoleId(), umUser.getPublisherId());
-                    if (response.getCode() == Response.SUCCESS_CODE) {
+                    if (response.success()) {
                         log.info("Update user {} role {} successfully when update user", umUser.getId(), umUser.getRoleId());
                     } else {
                         throw new RuntimeException("Update user " + umUser.getId() + " role " + umUser.getRoleId() + " failed when update user");
@@ -355,14 +355,24 @@ public class UserService extends BaseService {
 
     private void deleteSession(UmUser user) {
         try {
+            UmUser dbUser = this.umUserMapper.selectByPrimaryKey(user.getId());
+            if (dbUser == null){
+                return;
+            }
             Collection<Session> sessions = this.redisSessionDAO.getActiveSessions();
             for (Session session : sessions) {
                 SimplePrincipalCollection spc = (SimplePrincipalCollection) session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
                 UmUser sessionUser = (UmUser) spc.getPrimaryPrincipal();
-                if (user.getEmail().equals(sessionUser.getEmail())) {
-                    this.redisSessionDAO.delete(session);
-                    this.redisSessionDAO.setSessionInMemoryEnabled(false);
-                    log.info("Delete user {} session successfully!", user.getEmail());
+                if (dbUser.getEmail().equals(sessionUser.getEmail())) {
+                    new Thread(()->{
+                        try {
+                            Thread.sleep(10000);
+                            this.redisSessionDAO.delete(session);
+                            this.redisSessionDAO.setSessionInMemoryEnabled(false);
+                            log.info("Delete session {} session successfully!", session);
+                        } catch (Exception e){
+                        }
+                    }).start();
                 }
             }
         } catch (Exception e) {
@@ -398,6 +408,12 @@ public class UserService extends BaseService {
      */
     public Response createUserApp(UmUserApp umUserApp) {
         try {
+            List<Integer> appIds = this.getAppIdsOfCurrentUser();
+            if (!appIds.contains(umUserApp.getPubAppId())) {
+                log.error("User {} can not bind app {} to user {}", this.getCurrentUser().getName(),
+                        umUserApp.getUserId(), umUserApp.getPubAppId());
+                return Response.RES_UNAUTHORIZED;
+            }
             UmUserApp oldUserApp = this.umUserAppMapper.selectByPrimaryKey(umUserApp);
             if (oldUserApp != null) {
                 log.info("UmUserApp {} already existed", JSONObject.toJSONString(umUserApp));

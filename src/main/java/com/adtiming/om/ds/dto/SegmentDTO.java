@@ -3,6 +3,8 @@
 
 package com.adtiming.om.ds.dto;
 
+import com.adtiming.om.ds.model.OmInstanceWithBLOBs;
+
 import java.math.BigDecimal;
 
 /**
@@ -48,13 +50,25 @@ public class SegmentDTO {
 
     private String modelBlacklist;
 
-    private String gender;
+    private Byte gender;
 
-    private String interest;
+    private Integer ageMin;
+
+    private Integer ageMax;
 
     private BigDecimal iapMin;
 
     private BigDecimal iapMax;
+
+    private String channel;
+
+    private Byte channelBow;
+
+    private Integer deviceModelType;
+
+    private OmInstanceWithBLOBs[] instances;
+
+    private OmInstanceWithBLOBs[] headerbidding;
 
     public Integer getId() {
         return id;
@@ -208,20 +222,28 @@ public class SegmentDTO {
         this.modelBlacklist = modelBlacklist;
     }
 
-    public String getGender() {
+    public Byte getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Byte gender) {
         this.gender = gender;
     }
 
-    public String getInterest() {
-        return interest;
+    public Byte getChannelBow() {
+        return channelBow;
     }
 
-    public void setInterest(String interest) {
-        this.interest = interest;
+    public void setChannelBow(Byte channelBow) {
+        this.channelBow = channelBow;
+    }
+
+    public Integer getDeviceModelType() {
+        return deviceModelType;
+    }
+
+    public void setDeviceModelType(Integer deviceModelType) {
+        this.deviceModelType = deviceModelType;
     }
 
     public BigDecimal getIapMin() {
@@ -238,5 +260,45 @@ public class SegmentDTO {
 
     public void setIapMax(BigDecimal iapMax) {
         this.iapMax = iapMax;
+    }
+
+    public String getChannel() {
+        return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel;
+    }
+
+    public Integer getAgeMin() {
+        return ageMin;
+    }
+
+    public void setAgeMin(Integer ageMin) {
+        this.ageMin = ageMin;
+    }
+
+    public Integer getAgeMax() {
+        return ageMax;
+    }
+
+    public void setAgeMax(Integer ageMax) {
+        this.ageMax = ageMax;
+    }
+
+    public OmInstanceWithBLOBs[] getInstances() {
+        return instances;
+    }
+
+    public void setInstances(OmInstanceWithBLOBs[] instances) {
+        this.instances = instances;
+    }
+
+    public OmInstanceWithBLOBs[] getHeaderbidding() {
+        return headerbidding;
+    }
+
+    public void setHeaderbidding(OmInstanceWithBLOBs[] headerbidding) {
+        this.headerbidding = headerbidding;
     }
 }

@@ -1,6 +1,3 @@
-// Copyright 2020 ADTIMING TECHNOLOGY COMPANY LIMITED
-// Licensed under the GNU Lesser General Public License Version 3
-
 package com.adtiming.om.ds.model;
 
 import java.math.BigDecimal;
@@ -17,13 +14,23 @@ public class OmPlacementRuleSegment {
 
     private Byte conType;
 
-    private String gender;
+    private Byte gender;
+
+    private Integer ageMin;
+
+    private Integer ageMax;
 
     private String interest;
 
     private BigDecimal iapMin;
 
     private BigDecimal iapMax;
+
+    private String channel;
+
+    private Byte channelBow;
+
+    private Integer modelType;
 
     private Integer priority;
 
@@ -73,12 +80,28 @@ public class OmPlacementRuleSegment {
         this.conType = conType;
     }
 
-    public String getGender() {
+    public Byte getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender == null ? null : gender.trim();
+    public void setGender(Byte gender) {
+        this.gender = gender;
+    }
+
+    public Integer getAgeMin() {
+        return ageMin;
+    }
+
+    public void setAgeMin(Integer ageMin) {
+        this.ageMin = ageMin;
+    }
+
+    public Integer getAgeMax() {
+        return ageMax;
+    }
+
+    public void setAgeMax(Integer ageMax) {
+        this.ageMax = ageMax;
     }
 
     public String getInterest() {
@@ -103,6 +126,30 @@ public class OmPlacementRuleSegment {
 
     public void setIapMax(BigDecimal iapMax) {
         this.iapMax = iapMax;
+    }
+
+    public String getChannel() {
+        return channel;
+    }
+
+    public void setChannel(String channel) {
+        this.channel = channel == null ? null : channel.trim();
+    }
+
+    public Byte getChannelBow() {
+        return channelBow;
+    }
+
+    public void setChannelBow(Byte channelBow) {
+        this.channelBow = channelBow;
+    }
+
+    public Integer getModelType() {
+        return modelType;
+    }
+
+    public void setModelType(Integer modelType) {
+        this.modelType = modelType;
     }
 
     public Integer getPriority() {
@@ -150,18 +197,23 @@ public class OmPlacementRuleSegment {
         }
         OmPlacementRuleSegment other = (OmPlacementRuleSegment) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-                && (this.getPlacementId() == null ? other.getPlacementId() == null : this.getPlacementId().equals(other.getPlacementId()))
-                && (this.getCountries() == null ? other.getCountries() == null : this.getCountries().equals(other.getCountries()))
-                && (this.getFrequency() == null ? other.getFrequency() == null : this.getFrequency().equals(other.getFrequency()))
-                && (this.getConType() == null ? other.getConType() == null : this.getConType().equals(other.getConType()))
-                && (this.getGender() == null ? other.getGender() == null : this.getGender().equals(other.getGender()))
-                && (this.getInterest() == null ? other.getInterest() == null : this.getInterest().equals(other.getInterest()))
-                && (this.getIapMin() == null ? other.getIapMin() == null : this.getIapMin().equals(other.getIapMin()))
-                && (this.getIapMax() == null ? other.getIapMax() == null : this.getIapMax().equals(other.getIapMax()))
-                && (this.getPriority() == null ? other.getPriority() == null : this.getPriority().equals(other.getPriority()))
-                && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
-                && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-                && (this.getLastmodify() == null ? other.getLastmodify() == null : this.getLastmodify().equals(other.getLastmodify()));
+            && (this.getPlacementId() == null ? other.getPlacementId() == null : this.getPlacementId().equals(other.getPlacementId()))
+            && (this.getCountries() == null ? other.getCountries() == null : this.getCountries().equals(other.getCountries()))
+            && (this.getFrequency() == null ? other.getFrequency() == null : this.getFrequency().equals(other.getFrequency()))
+            && (this.getConType() == null ? other.getConType() == null : this.getConType().equals(other.getConType()))
+            && (this.getGender() == null ? other.getGender() == null : this.getGender().equals(other.getGender()))
+            && (this.getAgeMin() == null ? other.getAgeMin() == null : this.getAgeMin().equals(other.getAgeMin()))
+            && (this.getAgeMax() == null ? other.getAgeMax() == null : this.getAgeMax().equals(other.getAgeMax()))
+            && (this.getInterest() == null ? other.getInterest() == null : this.getInterest().equals(other.getInterest()))
+            && (this.getIapMin() == null ? other.getIapMin() == null : this.getIapMin().equals(other.getIapMin()))
+            && (this.getIapMax() == null ? other.getIapMax() == null : this.getIapMax().equals(other.getIapMax()))
+            && (this.getChannel() == null ? other.getChannel() == null : this.getChannel().equals(other.getChannel()))
+            && (this.getChannelBow() == null ? other.getChannelBow() == null : this.getChannelBow().equals(other.getChannelBow()))
+            && (this.getModelType() == null ? other.getModelType() == null : this.getModelType().equals(other.getModelType()))
+            && (this.getPriority() == null ? other.getPriority() == null : this.getPriority().equals(other.getPriority()))
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            && (this.getLastmodify() == null ? other.getLastmodify() == null : this.getLastmodify().equals(other.getLastmodify()));
     }
 
     @Override
@@ -174,9 +226,14 @@ public class OmPlacementRuleSegment {
         result = prime * result + ((getFrequency() == null) ? 0 : getFrequency().hashCode());
         result = prime * result + ((getConType() == null) ? 0 : getConType().hashCode());
         result = prime * result + ((getGender() == null) ? 0 : getGender().hashCode());
+        result = prime * result + ((getAgeMin() == null) ? 0 : getAgeMin().hashCode());
+        result = prime * result + ((getAgeMax() == null) ? 0 : getAgeMax().hashCode());
         result = prime * result + ((getInterest() == null) ? 0 : getInterest().hashCode());
         result = prime * result + ((getIapMin() == null) ? 0 : getIapMin().hashCode());
         result = prime * result + ((getIapMax() == null) ? 0 : getIapMax().hashCode());
+        result = prime * result + ((getChannel() == null) ? 0 : getChannel().hashCode());
+        result = prime * result + ((getChannelBow() == null) ? 0 : getChannelBow().hashCode());
+        result = prime * result + ((getModelType() == null) ? 0 : getModelType().hashCode());
         result = prime * result + ((getPriority() == null) ? 0 : getPriority().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());

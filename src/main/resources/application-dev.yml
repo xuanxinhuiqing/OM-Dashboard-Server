@@ -7,9 +7,13 @@ app:
     timeout: 2000
 
 logging:
-  config: classpath:log4j2-dev.xml
+  config: classpath:log4j2-prod.xml
 
-om.adc.domain: http://localhost:19014
+om.adc.domain: replace_with_your_om.adc.domain
+
+admob:
+  client_id: replace_with_your_googleapi.client_id
+  client_secret: replace_with_your_googleapi.client_secret
 
 spring:
   ## datasource
@@ -19,5 +23,6 @@ spring:
       url: jdbc:mysql://mysql_host/open_mediation?useCursorFetch=true&characterEncoding=utf8&useSSL=true&requireSSL=false
       username: user
       password: pwd
+
 
 

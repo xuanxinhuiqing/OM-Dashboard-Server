@@ -10,6 +10,8 @@ import com.adtiming.om.ds.dao.UmUserRoleMapper;
 import com.adtiming.om.ds.dto.NormalStatus;
 import com.adtiming.om.ds.dto.RoleType;
 import com.adtiming.om.ds.model.*;
+import org.apache.commons.lang.StringUtils;
+import org.apache.http.HttpHost;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -17,7 +19,10 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -57,13 +62,17 @@ public class BaseService {
         return currentUser;
     }
 
+    public Integer getCurrentPublisherId() {
+        return this.getCurrentUser().getPublisherId();
+    }
+
     public List<Integer> getAppIdsOfCurrentUser() {
         UmUser umUser = this.getCurrentUser();
         List<Integer> publisherAppIds = new ArrayList<>();
         if (umUser.getRoleId() == RoleType.ADMINISTRATOR.getId() || umUser.getRoleId() == RoleType.ORGANIZATION_OWNER.getId()) {
             List<Integer> userPublisherIds = new ArrayList<>();
             userPublisherIds.add(umUser.getPublisherId());
-            publisherAppIds = this.getPublisherAppIds(userPublisherIds, NormalStatus.ACTIVE);
+            publisherAppIds = this.getPublisherAppIds(userPublisherIds, NormalStatus.Active);
         } else {
             List<UmUserApp> umUserApps = this.getUserApps(umUser.getId(), null);
             if (!CollectionUtils.isEmpty(umUserApps)) {
@@ -76,13 +85,6 @@ public class BaseService {
             publisherAppIds.add(0);
         }
         return publisherAppIds;
-    }
-
-    public List<Integer> getPublisherIdsOfCurrentUser() {
-        UmUser umUser = this.getCurrentUser();
-        List<Integer> publisherIds = new ArrayList();
-        publisherIds.add(umUser.getPublisherId());
-        return publisherIds;
     }
 
     /**

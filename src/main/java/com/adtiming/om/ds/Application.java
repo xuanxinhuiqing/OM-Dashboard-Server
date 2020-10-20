@@ -5,6 +5,9 @@ package com.adtiming.om.ds;
 
 import com.adtiming.om.ds.web.filter.ResponseFilter;
 import com.github.pagehelper.PageInterceptor;
+import org.apache.commons.io.IOUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -64,6 +68,8 @@ public class Application {
 	    return new CorsFilter(source);
 	}
 
+    private static final Logger log = LogManager.getLogger();
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
@@ -82,6 +88,19 @@ public class Application {
     @Bean
     public DataSourceTransactionManager txManager(@Autowired DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
+    }
+
+    @Scheduled(cron = "0 1 * * * ?")
+    private void gzipAccessLogHourly() {
+        log.info("gzip access log start");
+        try {
+            String[] cmd = {"bash", "-c", "cd log; ls access.*.log|xargs gzip"};
+            Process p = new ProcessBuilder(cmd).redirectErrorStream(true).start();
+            IOUtils.copy(p.getInputStream(), System.out);
+            log.info("gzip access log finished {}", p.waitFor());
+        } catch (Exception e) {
+            log.error("gzip access log error", e);
+        }
     }
 
     @Bean

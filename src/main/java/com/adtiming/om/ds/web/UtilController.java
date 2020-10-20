@@ -5,6 +5,8 @@ package com.adtiming.om.ds.web;
 
 import com.adtiming.om.ds.dto.Response;
 import com.adtiming.om.ds.model.OmCountry;
+import com.adtiming.om.ds.model.OmCurrencyExchange;
+import com.adtiming.om.ds.model.OmMessageDict;
 import com.adtiming.om.ds.model.OmSupportDevice;
 import com.adtiming.om.ds.service.CacheService;
 import com.adtiming.om.ds.service.UtilService;
@@ -17,9 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Util interface
@@ -35,6 +39,35 @@ public class UtilController {
 
     @Autowired
     UtilService utilService;
+
+    /**
+     * Get dicts
+     */
+    @RequestMapping(value = "/msg/dict", method = RequestMethod.GET)
+    public Response getMessageDicts() {
+        try {
+            List<OmMessageDict> dicts = this.utilService.getMessageDicts();
+            Map<String, Map<String, String>> dictMap = dicts.stream().collect(
+                    Collectors.groupingBy(OmMessageDict::getPage, Collectors.toMap(OmMessageDict::getMsgKey, OmMessageDict::getValue)));
+            return Response.buildSuccess(dictMap);
+        } catch (Exception e) {
+            log.error("Get message dicts error:", e);
+        }
+        return Response.RES_FAILED;
+    }
+
+    /**
+     * Get currency list
+     */
+    @RequestMapping(value = "/util/currency/list", method = RequestMethod.GET)
+    public Response getCurrencyList() {
+        List<OmCurrencyExchange> currencyList = this.utilService.getCurrencyList();
+        List<String> results = new ArrayList<>();
+        currencyList.forEach(currency -> {
+            results.add(currency.getCurFrom());
+        });
+        return Response.buildSuccess(results);
+    }
 
     /**
      * Get support device brand list
@@ -79,7 +112,7 @@ public class UtilController {
     }
 
     /**
-     * Get support device list
+     * Get country list order by app revenue
      *
      * @param pubAppId
      */

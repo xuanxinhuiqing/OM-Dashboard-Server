@@ -1,6 +1,3 @@
-// Copyright 2020 ADTIMING TECHNOLOGY COMPANY LIMITED
-// Licensed under the GNU Lesser General Public License Version 3
-
 package com.adtiming.om.ds.model;
 
 import java.math.BigDecimal;
@@ -19,20 +16,20 @@ public class OmPlacementRuleSegmentCriteria {
         oredCriteria = new ArrayList<Criteria>();
     }
 
-    public String getOrderByClause() {
-        return orderByClause;
-    }
-
     public void setOrderByClause(String orderByClause) {
         this.orderByClause = orderByClause;
     }
 
-    public boolean isDistinct() {
-        return distinct;
+    public String getOrderByClause() {
+        return orderByClause;
     }
 
     public void setDistinct(boolean distinct) {
         this.distinct = distinct;
+    }
+
+    public boolean isDistinct() {
+        return distinct;
     }
 
     public List<Criteria> getOredCriteria() {
@@ -429,63 +426,173 @@ public class OmPlacementRuleSegmentCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andGenderEqualTo(String value) {
+        public Criteria andGenderEqualTo(Byte value) {
             addCriterion("gender =", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderNotEqualTo(String value) {
+        public Criteria andGenderNotEqualTo(Byte value) {
             addCriterion("gender <>", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderGreaterThan(String value) {
+        public Criteria andGenderGreaterThan(Byte value) {
             addCriterion("gender >", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderGreaterThanOrEqualTo(String value) {
+        public Criteria andGenderGreaterThanOrEqualTo(Byte value) {
             addCriterion("gender >=", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderLessThan(String value) {
+        public Criteria andGenderLessThan(Byte value) {
             addCriterion("gender <", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderLessThanOrEqualTo(String value) {
+        public Criteria andGenderLessThanOrEqualTo(Byte value) {
             addCriterion("gender <=", value, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderLike(String value) {
-            addCriterion("gender like", value, "gender");
-            return (Criteria) this;
-        }
-
-        public Criteria andGenderNotLike(String value) {
-            addCriterion("gender not like", value, "gender");
-            return (Criteria) this;
-        }
-
-        public Criteria andGenderIn(List<String> values) {
+        public Criteria andGenderIn(List<Byte> values) {
             addCriterion("gender in", values, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderNotIn(List<String> values) {
+        public Criteria andGenderNotIn(List<Byte> values) {
             addCriterion("gender not in", values, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderBetween(String value1, String value2) {
+        public Criteria andGenderBetween(Byte value1, Byte value2) {
             addCriterion("gender between", value1, value2, "gender");
             return (Criteria) this;
         }
 
-        public Criteria andGenderNotBetween(String value1, String value2) {
+        public Criteria andGenderNotBetween(Byte value1, Byte value2) {
             addCriterion("gender not between", value1, value2, "gender");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMinIsNull() {
+            addCriterion("age_min is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMinIsNotNull() {
+            addCriterion("age_min is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMinEqualTo(Integer value) {
+            addCriterion("age_min =", value, "ageMin");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMinNotEqualTo(Integer value) {
+            addCriterion("age_min <>", value, "ageMin");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMinGreaterThan(Integer value) {
+            addCriterion("age_min >", value, "ageMin");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMinGreaterThanOrEqualTo(Integer value) {
+            addCriterion("age_min >=", value, "ageMin");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMinLessThan(Integer value) {
+            addCriterion("age_min <", value, "ageMin");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMinLessThanOrEqualTo(Integer value) {
+            addCriterion("age_min <=", value, "ageMin");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMinIn(List<Integer> values) {
+            addCriterion("age_min in", values, "ageMin");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMinNotIn(List<Integer> values) {
+            addCriterion("age_min not in", values, "ageMin");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMinBetween(Integer value1, Integer value2) {
+            addCriterion("age_min between", value1, value2, "ageMin");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMinNotBetween(Integer value1, Integer value2) {
+            addCriterion("age_min not between", value1, value2, "ageMin");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMaxIsNull() {
+            addCriterion("age_max is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMaxIsNotNull() {
+            addCriterion("age_max is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMaxEqualTo(Integer value) {
+            addCriterion("age_max =", value, "ageMax");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMaxNotEqualTo(Integer value) {
+            addCriterion("age_max <>", value, "ageMax");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMaxGreaterThan(Integer value) {
+            addCriterion("age_max >", value, "ageMax");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMaxGreaterThanOrEqualTo(Integer value) {
+            addCriterion("age_max >=", value, "ageMax");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMaxLessThan(Integer value) {
+            addCriterion("age_max <", value, "ageMax");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMaxLessThanOrEqualTo(Integer value) {
+            addCriterion("age_max <=", value, "ageMax");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMaxIn(List<Integer> values) {
+            addCriterion("age_max in", values, "ageMax");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMaxNotIn(List<Integer> values) {
+            addCriterion("age_max not in", values, "ageMax");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMaxBetween(Integer value1, Integer value2) {
+            addCriterion("age_max between", value1, value2, "ageMax");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgeMaxNotBetween(Integer value1, Integer value2) {
+            addCriterion("age_max not between", value1, value2, "ageMax");
             return (Criteria) this;
         }
 
@@ -676,6 +783,196 @@ public class OmPlacementRuleSegmentCriteria {
 
         public Criteria andIapMaxNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("iap_max not between", value1, value2, "iapMax");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelIsNull() {
+            addCriterion("channel is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelIsNotNull() {
+            addCriterion("channel is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelEqualTo(String value) {
+            addCriterion("channel =", value, "channel");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelNotEqualTo(String value) {
+            addCriterion("channel <>", value, "channel");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelGreaterThan(String value) {
+            addCriterion("channel >", value, "channel");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelGreaterThanOrEqualTo(String value) {
+            addCriterion("channel >=", value, "channel");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelLessThan(String value) {
+            addCriterion("channel <", value, "channel");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelLessThanOrEqualTo(String value) {
+            addCriterion("channel <=", value, "channel");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelLike(String value) {
+            addCriterion("channel like", value, "channel");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelNotLike(String value) {
+            addCriterion("channel not like", value, "channel");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelIn(List<String> values) {
+            addCriterion("channel in", values, "channel");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelNotIn(List<String> values) {
+            addCriterion("channel not in", values, "channel");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelBetween(String value1, String value2) {
+            addCriterion("channel between", value1, value2, "channel");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelNotBetween(String value1, String value2) {
+            addCriterion("channel not between", value1, value2, "channel");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelBowIsNull() {
+            addCriterion("channel_bow is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelBowIsNotNull() {
+            addCriterion("channel_bow is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelBowEqualTo(Byte value) {
+            addCriterion("channel_bow =", value, "channelBow");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelBowNotEqualTo(Byte value) {
+            addCriterion("channel_bow <>", value, "channelBow");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelBowGreaterThan(Byte value) {
+            addCriterion("channel_bow >", value, "channelBow");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelBowGreaterThanOrEqualTo(Byte value) {
+            addCriterion("channel_bow >=", value, "channelBow");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelBowLessThan(Byte value) {
+            addCriterion("channel_bow <", value, "channelBow");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelBowLessThanOrEqualTo(Byte value) {
+            addCriterion("channel_bow <=", value, "channelBow");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelBowIn(List<Byte> values) {
+            addCriterion("channel_bow in", values, "channelBow");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelBowNotIn(List<Byte> values) {
+            addCriterion("channel_bow not in", values, "channelBow");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelBowBetween(Byte value1, Byte value2) {
+            addCriterion("channel_bow between", value1, value2, "channelBow");
+            return (Criteria) this;
+        }
+
+        public Criteria andChannelBowNotBetween(Byte value1, Byte value2) {
+            addCriterion("channel_bow not between", value1, value2, "channelBow");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelTypeIsNull() {
+            addCriterion("model_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelTypeIsNotNull() {
+            addCriterion("model_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelTypeEqualTo(Integer value) {
+            addCriterion("model_type =", value, "modelType");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelTypeNotEqualTo(Integer value) {
+            addCriterion("model_type <>", value, "modelType");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelTypeGreaterThan(Integer value) {
+            addCriterion("model_type >", value, "modelType");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("model_type >=", value, "modelType");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelTypeLessThan(Integer value) {
+            addCriterion("model_type <", value, "modelType");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("model_type <=", value, "modelType");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelTypeIn(List<Integer> values) {
+            addCriterion("model_type in", values, "modelType");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelTypeNotIn(List<Integer> values) {
+            addCriterion("model_type not in", values, "modelType");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelTypeBetween(Integer value1, Integer value2) {
+            addCriterion("model_type between", value1, value2, "modelType");
+            return (Criteria) this;
+        }
+
+        public Criteria andModelTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("model_type not between", value1, value2, "modelType");
             return (Criteria) this;
         }
 
@@ -944,6 +1241,38 @@ public class OmPlacementRuleSegmentCriteria {
 
         private String typeHandler;
 
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
+        }
+
         protected Criterion(String condition) {
             super();
             this.condition = condition;
@@ -978,38 +1307,6 @@ public class OmPlacementRuleSegmentCriteria {
 
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
-        }
-
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
         }
     }
 }

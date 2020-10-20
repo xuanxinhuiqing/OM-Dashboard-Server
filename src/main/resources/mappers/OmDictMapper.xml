@@ -47,7 +47,7 @@
   <sql id="Blob_Column_List">
     value
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.adtiming.om.ds.model.OmDictCriteria" resultMap="ResultMapWithBLOBs">
+  <select id="selectWithBLOBs" parameterType="com.adtiming.om.ds.model.OmDictCriteria" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
