@@ -1,15 +1,15 @@
 app:
   env: dev
   redis:
-    server: redis_host:6379
+    server: 172.31.1.87:6380
     database: 0
-    password: your_password
+    password: admin
     timeout: 2000
 
 logging:
   config: classpath:log4j2-prod.xml
 
-om.adc.domain: replace_with_your_om.adc.domain
+om.adc.domain: http://adc.adsgreat.com
 
 admob:
   client_id: replace_with_your_googleapi.client_id
@@ -20,9 +20,9 @@ spring:
   datasource:
     mysql:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://mysql_host/open_mediation?useCursorFetch=true&characterEncoding=utf8&useSSL=true&requireSSL=false
-      username: user
-      password: pwd
+      url: jdbc:mysql://127.0.0.1:3306/open_mediation?useCursorFetch=true&characterEncoding=utf8&useSSL=true&requireSSL=false
+      username: root
+      password: admin
 
 
 
