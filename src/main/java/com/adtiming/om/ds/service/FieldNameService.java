@@ -59,11 +59,14 @@ public class FieldNameService {
     public synchronized void initIdName() {
         try {
             List<OmAdnetwork> adNetworks = this.omAdnetworkMapper.select(new OmAdnetworkCriteria());
-            adNetworks.forEach(adNetwork -> {
-                this.idNameMap.put("adnId" + adNetwork.getId(), adNetwork.getDescn());
-                this.idNameMap.put("adnId-1", "In-app Bidding");
-            });
-            log.info("Init adNetworks size: {}", adNetworks.size());
+            log.info(adNetworks);
+            if (adNetworks != null) {
+            	adNetworks.forEach(adNetwork -> {
+                    this.idNameMap.put("adnId" + adNetwork.getId(), adNetwork.getDescn());
+                    this.idNameMap.put("adnId-1", "In-app Bidding");
+                });
+                log.info("Init adNetworks size: {}", adNetworks.size());
+            }
 
             List<OmPublisherApp> publisherApps = omPublisherAppMapper.select(new OmPublisherAppCriteria());
             publisherApps.forEach(publisherApp -> {

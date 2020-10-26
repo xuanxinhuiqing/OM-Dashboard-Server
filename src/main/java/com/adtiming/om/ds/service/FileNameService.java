@@ -55,10 +55,12 @@ public class FileNameService {
     public synchronized void initIdName() {
         try {
             List<OmAdnetwork> adNetworks = this.omAdnetworkMapper.select(new OmAdnetworkCriteria());
-            adNetworks.forEach(adNetwork -> {
-                this.idNameMap.put("adnId" + adNetwork.getId(), adNetwork.getDescn());
-            });
-            log.info("Init adNetworks size: {}", adNetworks.size());
+            if (adNetworks != null) {
+            	adNetworks.forEach(adNetwork -> {
+                    this.idNameMap.put("adnId" + adNetwork.getId(), adNetwork.getDescn());
+                });
+                log.info("Init adNetworks size: {}", adNetworks.size());
+            }
 
             List<OmPublisherApp> publisherApps = omPublisherAppMapper.select(new OmPublisherAppCriteria());
             publisherApps.forEach(publisherApp -> {
