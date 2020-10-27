@@ -1,7 +1,7 @@
 app:
   env: prod
   redis:
-    server: 172.31.1.87:6380
+    server: 172.31.19.15:6379
     database: 0
     password: admin
     timeout: 2000
@@ -16,6 +16,6 @@ spring:
   datasource:
     mysql:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://127.0.0.1:3306/open_mediation?useCursorFetch=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
-      username: root
-      password: admin
+      url: jdbc:mysql://om.ckaigoijxdbf.rds.cn-north-1.amazonaws.com.cn:3306/open_mediation?useCursorFetch=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+      username: beijingssp
+      password: beijingssp123
