@@ -1,7 +1,7 @@
 app:
   env: dev
   redis:
-    server: 172.31.1.87:6380
+    server: 172.31.1.12:6380
     database: 0
     password: admin
     timeout: 2000
