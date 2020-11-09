@@ -5,10 +5,8 @@ import com.adtiming.om.ds.dao.ReportAdnetworkAccountPublisherMapper;
 import com.adtiming.om.ds.dto.AdNetworkType;
 import com.adtiming.om.ds.dto.NormalStatus;
 import com.adtiming.om.ds.dto.Response;
-import com.adtiming.om.ds.dto.SwitchStatus;
 import com.adtiming.om.ds.model.*;
 import com.alibaba.fastjson.JSONObject;
-import com.google.api.client.auth.oauth2.TokenResponseException;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -194,6 +192,34 @@ public class AccountService extends BaseService {
                 primaryKey = account.getUserId() + "_" + account.getAdnApiKey() + "_" + account.getUserSignature();
                 break;
             }
+            
+            // ADDCODE aaron.song
+            case Agsdk:
+            case AgsdkPlugin:
+            case AlionPlugin:
+            case TiktokPlugin:
+            case KsPlugin:
+            case Plugin6:
+            case MintgralPlugin:
+            case Plugin8:
+            case Plugin9:
+            case Plugin10:
+            case Plugin11:
+            case Plugin12:
+            case Plugin13:
+            case Plugin14:
+            case Plugin15:
+            case Plugin16:
+            case Plugin17:
+            case Plugin18:
+            case Plugin19:
+            case Plugin20:
+            case Plugin21:
+            case Plugin22:
+            case Inmobi:
+            case Baidu:
+            //
+            
             default:
                 throw new RuntimeException("Not support Adnetwork id " + account.getAdnId());
         }
@@ -490,6 +516,34 @@ public class AccountService extends BaseService {
                 }
                 break;
             }
+            
+            // ADDCODE aaron.song
+            case Agsdk:
+            case AgsdkPlugin:
+            case AlionPlugin:
+            case TiktokPlugin:
+            case KsPlugin:
+            case Plugin6:
+            case MintgralPlugin:
+            case Plugin8:
+            case Plugin9:
+            case Plugin10:
+            case Plugin11:
+            case Plugin12:
+            case Plugin13:
+            case Plugin14:
+            case Plugin15:
+            case Plugin16:
+            case Plugin17:
+            case Plugin18:
+            case Plugin19:
+            case Plugin20:
+            case Plugin21:
+            case Plugin22:
+            case Inmobi:
+            case Baidu:
+            //
+            
             default:
                 throw new RuntimeException("Not support ad network id " + account.getAdnId());
         }

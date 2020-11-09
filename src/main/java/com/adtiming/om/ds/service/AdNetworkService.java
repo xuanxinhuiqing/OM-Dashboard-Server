@@ -393,28 +393,5 @@ public class AdNetworkService extends BaseService {
         }
         return Response.build();
     }
-    
-    private String getAccountKeyField(int adnId) {
-        switch (adnId) {
-            case 1:
-            case 4:
-                return "reportAppId";
-            case 2:
-            case 7:
-            case 8:
-            case 17: // Cloudmobi
-                return "adnAppKey";
-            case 3:
-            case 10:
-            case 11:
-            case 12:
-            case 14:
-                return "apiKey";
-            case 6:
-                return "refreshToken";
-            case 15:
-                return "clientId";
-        }
-        return "";
-    }
+
 }

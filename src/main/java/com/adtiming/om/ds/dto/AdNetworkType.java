@@ -20,7 +20,34 @@ public enum AdNetworkType {
     MyTarget(16),
     ChartboostBid(17),
     Mint(18),
-    Fyber(30);
+    Fyber(30),
+	
+	// ADDCODE aaron.song
+	Agsdk(31),
+	AgsdkPlugin(33),
+	AlionPlugin(34),
+	TiktokPlugin(35),
+	KsPlugin(36),
+	Plugin6(37),
+	MintgralPlugin(38),
+	Plugin8(39),
+	Plugin9(40),
+	Plugin10(41),
+	Plugin11(42),
+	Plugin12(43),
+	Plugin13(44),
+	Plugin14(45),
+	Plugin15(46),
+	Plugin16(47),
+	Plugin17(48),
+	Plugin18(49),
+	Plugin19(50),
+	Plugin20(51),
+	Plugin21(52),
+	Plugin22(53),
+	Inmobi(54),
+	Baidu(55);
+	//
 
     private int value;
 
@@ -68,6 +95,58 @@ public enum AdNetworkType {
                 return Mint;
             case 30:
                 return Fyber;
+            
+            // ADDCODE aaron.song
+            case 31:
+            	return Agsdk;
+            case 33:
+            	return AgsdkPlugin;
+            case 34:
+            	return AlionPlugin;
+            case 35:
+            	return TiktokPlugin;
+            case 36:
+            	return KsPlugin;
+            case 37:
+            	return Plugin6;
+            case 38:
+            	return MintgralPlugin;
+            case 39:
+            	return Plugin8;
+            case 40:
+            	return Plugin9;
+            case 41:
+            	return Plugin10;
+            case 42:
+            	return Plugin11;
+            case 43:
+            	return Plugin12;
+            case 44:
+            	return Plugin13;
+            case 45:
+            	return Plugin14;
+            case 46:
+            	return Plugin15;
+            case 47:
+            	return Plugin16;
+            case 48:
+            	return Plugin17;
+            case 49:
+            	return Plugin18;
+            case 50:
+            	return Plugin19;
+            case 51:
+            	return Plugin20;
+            case 52:
+            	return Plugin21;
+            case 53:
+            	return Plugin22;
+            case 54:
+            	return Inmobi;
+            case 55:
+            	return Baidu;
+            //
+                
             default:
                 throw new RuntimeException("Not support ad network type:" + adNetworkType);
         }
