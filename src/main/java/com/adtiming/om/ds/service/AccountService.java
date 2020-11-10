@@ -524,36 +524,181 @@ public class AccountService extends BaseService {
             }
             
             // ADDCODE aaron.song
-            case Agsdk:
-            case AgsdkPlugin:
-            case AlionPlugin:
-            case TiktokPlugin:
-            case KsPlugin:
-            case Plugin6:
-            case MintgralPlugin:
-            case Plugin8:
-            case Plugin9:
-            case Plugin10:
-            case Plugin11:
-            case Plugin12:
-            case Plugin13:
-            case Plugin14:
-            case Plugin15:
-            case Plugin16:
-            case Plugin17:
-            case Plugin18:
-            case Plugin19:
-            case Plugin20:
-            case Plugin21:
-            case Plugin22:
-            case Inmobi:
-            case Baidu:
+            case Agsdk:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Agsdk's [App token] must be not null");
+                }
+                break;
+            }
+            case AgsdkPlugin:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "AgsdkPlugin's [App token] must be not null");
+                }
+                break;
+            }
+            case AlionPlugin:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "AlionPlugin's [App token] must be not null");
+                }
+                break;
+            }
+            case TiktokPlugin:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "TiktokPlugin's [App token] must be not null");
+                }
+                break;
+            }
+            case KsPlugin:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "KsPlugin's [App token] must be not null");
+                }
+                break;
+            }
+            case Plugin6:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Plugin6's [App token] must be not null");
+                }
+                break;
+            }
+            case MintgralPlugin:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "MintgralPlugin's [App token] must be not null");
+                }
+                break;
+            }
+            case Plugin8:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Plugin8's [App token] must be not null");
+                }
+                break;
+            }
+            case Plugin9:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Plugin9's [App token] must be not null");
+                }
+                break;
+            }
+            case Plugin10:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Plugin10's [App token] must be not null");
+                }
+                break;
+            }
+            case Plugin11:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Plugin11's [App token] must be not null");
+                }
+                break;
+            }
+            case Plugin12:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Plugin12's [App token] must be not null");
+                }
+                break;
+            }
+            case Plugin13:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Plugin13's [App token] must be not null");
+                }
+                break;
+            }
+            case Plugin14:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Plugin14's [App token] must be not null");
+                }
+                break;
+            }
+            case Plugin15:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Plugin15's [App token] must be not null");
+                }
+                break;
+            }
+            case Plugin16:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Plugin16's [App token] must be not null");
+                }
+                break;
+            }
+            case Plugin17:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Plugin17's [App token] must be not null");
+                }
+                break;
+            }
+            case Plugin18:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Plugin18's [App token] must be not null");
+                }
+                break;
+            }
+            case Plugin19:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Plugin19's [App token] must be not null");
+                }
+                break;
+            }
+            case Plugin20:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Plugin20's [App token] must be not null");
+                }
+                break;
+            }
+            case Plugin21:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Plugin21's [App token] must be not null");
+                }
+                break;
+            }
+            case Plugin22:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Plugin22's [App token] must be not null");
+                }
+                break;
+            }
+            case Inmobi:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Inmobi's [App token] must be not null");
+                }
+                break;
+            }
+            case Baidu:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Baidu's [App token] must be not null");
+                }
+                break;
+            }
             	
-            case TC:
-            case Sigmob:
-            case ZYT:
-            case KS:
-            case Alion:
+            case TC:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "TC's [App token] must be not null");
+                }
+                break;
+            }
+            case Sigmob:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Sigmob's [App token] must be not null");
+                }
+                break;
+            }
+            case ZYT:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "ZYT's [App token] must be not null");
+                }
+                break;
+            }
+            case KS:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "KS's [App token] must be not null");
+                }
+                break;
+            }
+            case Alion:{
+                if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Alion's [App token] must be not null");
+                }
+                break;
+            }
             //
             
             default:
