@@ -20,10 +20,19 @@ public enum AdNetworkType {
     MyTarget(16),
     ChartboostBid(17),
     Mint(18),
+    
+    // ADDCODE aaron.song
+    TC(19),
+    Sigmob(20),
+    ZYT(21),
+    KS(22),
+    Alion(23),
+    //
+    
     Fyber(30),
 	
 	// ADDCODE aaron.song
-	Agsdk(31),
+	Agsdk(32),
 	AgsdkPlugin(33),
 	AlionPlugin(34),
 	TiktokPlugin(35),
@@ -93,11 +102,25 @@ public enum AdNetworkType {
                 return ChartboostBid;
             case 18:
                 return Mint;
+                
+            // ADDCODE aaron.song
+            case 19:
+            	return TC;
+            case 20:
+            	return Sigmob;
+            case 21:
+            	return ZYT;
+            case 22:
+            	return KS;
+            case 23:
+            	return Alion;
+            //
+            
             case 30:
                 return Fyber;
             
             // ADDCODE aaron.song
-            case 31:
+            case 32:
             	return Agsdk;
             case 33:
             	return AgsdkPlugin;

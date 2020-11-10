@@ -218,6 +218,12 @@ public class AccountService extends BaseService {
             case Plugin22:
             case Inmobi:
             case Baidu:
+            	
+            case TC:
+            case Sigmob:
+            case ZYT:
+            case KS:
+            case Alion:
             //
             
             default:
@@ -542,6 +548,12 @@ public class AccountService extends BaseService {
             case Plugin22:
             case Inmobi:
             case Baidu:
+            	
+            case TC:
+            case Sigmob:
+            case ZYT:
+            case KS:
+            case Alion:
             //
             
             default:
