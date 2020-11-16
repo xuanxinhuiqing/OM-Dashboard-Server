@@ -257,13 +257,13 @@ public class AccountService extends BaseService {
         }
 
         Integer publisherId = this.getCurrentUser().getPublisherId();
-        ReportAdnetworkAccount duplicatedAccount = this.getDuplicatedAccount(account);
-        if (duplicatedAccount != null) {
-            String warn = "This Ad Network Account " + duplicatedAccount.getPrimaryKey() + " already exists. " +
-                    "If you confirm it's your account, and be sure to use it, please contact your AdTiming account manager.";
-            log.warn(warn);
-            return Response.build(Response.CODE_RES_DATA_EXISTED, Response.STATUS_DISABLE, warn);
-        }
+//        ReportAdnetworkAccount duplicatedAccount = this.getDuplicatedAccount(account);
+//        if (duplicatedAccount != null) {
+//            String warn = "This Ad Network Account " + duplicatedAccount.getPrimaryKey() + " already exists. " +
+//                    "If you confirm it's your account, and be sure to use it, please contact your AdTiming account manager.";
+//            log.warn(warn);
+//            return Response.build(Response.CODE_RES_DATA_EXISTED, Response.STATUS_DISABLE, warn);
+//        }
 
         account.setCreateTime(new Date());
         account.setStatus((byte)NormalStatus.Active.ordinal());
@@ -301,13 +301,13 @@ public class AccountService extends BaseService {
                     return isAdKeyValid;
                 }
                 account.setStatus((byte)NormalStatus.Active.ordinal());
-                ReportAdnetworkAccount duplicatedAccount = this.getDuplicatedAccount(account);
-                if (duplicatedAccount != null) {
-                    String warn = "This Ad Network Account " + duplicatedAccount.getPrimaryKey() + " already exists. " +
-                            "If you confirm it's your account, and be sure to use it, please contact your AdTiming account manager.";
-                    log.warn(warn);
-                    return Response.build(Response.CODE_RES_DATA_EXISTED, Response.STATUS_DISABLE, warn);
-                }
+//                ReportAdnetworkAccount duplicatedAccount = this.getDuplicatedAccount(account);
+//                if (duplicatedAccount != null) {
+//                    String warn = "This Ad Network Account " + duplicatedAccount.getPrimaryKey() + " already exists. " +
+//                            "If you confirm it's your account, and be sure to use it, please contact your AdTiming account manager.";
+//                    log.warn(warn);
+//                    return Response.build(Response.CODE_RES_DATA_EXISTED, Response.STATUS_DISABLE, warn);
+//                }
             }
 
             Response response = this.isUserRelateToAccount(account);
