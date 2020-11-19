@@ -105,6 +105,67 @@ public class InstanceController extends BaseController {
         }
         return Response.RES_FAILED;
     }
+    
+    // ADDCODE aaron.song
+    /**
+     * Get select placement instances
+     */
+    @RequestMapping(value = "/instance/select/list2", method = RequestMethod.GET)
+    public Response getSelectInstance(String[] adNetworkIds, String[] pubAppIds, String[] placementIds, String[] instanceIds, Byte headBid, Integer adNetworkAppId) {
+        try {
+            List<Integer> adnIds = null;
+            if (adNetworkIds != null && adNetworkIds.length > 0) {
+                adnIds = new ArrayList<>();
+                for (String adnId : adNetworkIds) {
+                    adnIds.add(Integer.parseInt(adnId));
+                }
+            }
+            NormalStatus instanceStatus = null;
+            if (headBid != null) {
+                instanceStatus = NormalStatus.Active;
+            }
+            
+            List<Integer> paIds = null;
+            if (pubAppIds != null && pubAppIds.length > 0) {
+            	paIds = new ArrayList<>();
+                for (String paId : pubAppIds) {
+                	paIds.add(Integer.parseInt(paId));
+                }
+            }
+            
+            List<Integer> pIds = null;
+            if (placementIds != null && placementIds.length > 0) {
+            	pIds = new ArrayList<>();
+            	for (String pId : placementIds) {
+            		pIds.add(Integer.parseInt(pId));
+            	}
+            }
+            
+            List<Integer> iIds = null;
+            if (instanceIds != null && instanceIds.length > 0) {
+            	iIds = new ArrayList<>();
+            	for (String iId : instanceIds) {
+            		iIds.add(Integer.parseInt(iId));
+            	}
+            }
+            
+            List<OmInstanceWithBLOBs> instances = this.instanceService.getInstances(paIds, adnIds, iIds, pIds, instanceStatus, headBid, adNetworkAppId);
+            JSONArray selects = new JSONArray();
+            for (OmInstanceWithBLOBs instance : instances) {
+                JSONObject select = new JSONObject();
+                select.put("id", instance.getId());
+                select.put("name", instance.getName());
+                select.put("placementId", instance.getPlacementId());
+                select.put("placementKey", instance.getPlacementKey());
+                selects.add(select);
+            }
+            return Response.buildSuccess(selects);
+        } catch (Exception e) {
+            log.error("get placement instances error:", e);
+        }
+        return Response.RES_FAILED;
+    }
+    //
 
     /**
      * Get all placement instance

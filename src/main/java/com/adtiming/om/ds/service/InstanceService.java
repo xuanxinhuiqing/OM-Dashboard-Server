@@ -214,6 +214,50 @@ public class InstanceService extends BaseService {
         log.info("Select instance by publisher id size: {}", instances.size());
         return instances;
     }
+    
+    // ADDCODE aaron.song
+    /**
+     * Select instances
+     *
+     * @param pubAppIds
+     * @param adNetworkIds
+     * @param instanceIds
+     * @param placementIds
+     * @param status
+     * @return instances
+     */
+    public List<OmInstanceWithBLOBs> getInstances(List<Integer> pubAppIds, List<Integer> adNetworkIds, List<Integer> instanceIds,
+    		List<Integer> placementIds, NormalStatus status, Byte headBid, Integer adNetworkAppId) {
+        OmInstanceCriteria omInstanceCriteria = new OmInstanceCriteria();
+        OmInstanceCriteria.Criteria criteria = omInstanceCriteria.createCriteria();
+        if (pubAppIds != null) {
+            criteria.andPubAppIdIn(pubAppIds);
+        }
+        if (adNetworkIds != null) {
+            criteria.andAdnIdIn(adNetworkIds);
+        }
+        if (instanceIds != null) {
+            criteria.andIdIn(instanceIds);
+        }
+        if (placementIds != null) {
+            criteria.andPlacementIdIn(placementIds);
+        }
+        if (status != null) {
+            criteria.andStatusEqualTo((byte) status.ordinal());
+        }
+        if (headBid != null) {
+            criteria.andHbStatusEqualTo(headBid);
+        }
+        if (adNetworkAppId != null) {
+            criteria.andAdnAppIdEqualTo(adNetworkAppId);
+        }
+        criteria.andPubAppIdIn(this.getAppIdsOfCurrentUser());
+        omInstanceCriteria.setOrderByClause(" create_time desc ");
+        List<OmInstanceWithBLOBs> instances = this.omInstanceMapper.select(omInstanceCriteria);
+        log.info("Select instance by publisher id size: {}", instances.size());
+        return instances;
+    }
+    //
 
     /**
      * Select instances

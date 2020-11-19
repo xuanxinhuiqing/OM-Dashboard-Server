@@ -55,7 +55,8 @@ public enum AdNetworkType {
 	Plugin21(52),
 	Plugin22(53),
 	Inmobi(54),
-	Baidu(55);
+	Baidu(55),
+	Smaato(56);
 	//
 
     private int value;
@@ -168,6 +169,8 @@ public enum AdNetworkType {
             	return Inmobi;
             case 55:
             	return Baidu;
+            case 56:
+            	return Smaato;
             //
                 
             default:

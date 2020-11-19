@@ -224,6 +224,7 @@ public class AccountService extends BaseService {
             case ZYT:
             case KS:
             case Alion:
+            case Smaato:
             	break;
             //
             
@@ -697,6 +698,12 @@ public class AccountService extends BaseService {
             case Alion:{
                 if (StringUtils.isBlank(account.getAdnAppToken())) {
                     return Response.failure(Response.CODE_PARAMETER_NULL, "Alion's [App token] must be not null");
+                }
+                break;
+            }
+            case Smaato:{
+            	if (StringUtils.isBlank(account.getAdnAppToken())) {
+                    return Response.failure(Response.CODE_PARAMETER_NULL, "Smaato's [App token] must be not null");
                 }
                 break;
             }
